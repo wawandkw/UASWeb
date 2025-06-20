@@ -2,6 +2,12 @@
 session_start();
 include 'koneksi.php';
 
+// Cek apakah pengguna sudah login
+if (!isset($_SESSION['id_pengguna'])) {
+  header("Location: login.php");
+  exit();
+}
+
 $search = $_GET['search'] ?? '';
 $keywords = array_filter(explode(" ", $search));
 $conditions = [];

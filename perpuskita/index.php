@@ -32,9 +32,6 @@ $terbaru = $conn->query("SELECT * FROM buku ORDER BY id_buku DESC LIMIT 5");
       <a href="dashboard.php" class="flex items-center gap-1 text-blue-700 font-semibold">
         <i data-feather="home"></i> Home
       </a>
-      <a href="buku.php" class="flex items-center gap-1 text-gray-700 hover:text-blue-700">
-        <i data-feather="book-open"></i> Buku
-      </a>
       <a href="login.php" class="flex items-center gap-1 text-gray-700 hover:text-blue-700">
         <i data-feather="user"></i> Login
       </a>
@@ -78,7 +75,7 @@ $terbaru = $conn->query("SELECT * FROM buku ORDER BY id_buku DESC LIMIT 5");
     <?php endwhile; ?>
   </div>
   <div class="text-right mt-4">
-    <a href="buku.php" class="text-blue-600 hover:underline">Lihat lebih banyak →</a>
+    <a href="login.php" class="text-blue-600 hover:underline">Lihat lebih banyak →</a>
   </div>
 </section>
 

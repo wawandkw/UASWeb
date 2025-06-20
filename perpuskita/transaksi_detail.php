@@ -43,7 +43,7 @@ $data = $result->fetch_assoc();
         'menunggu' => '🟡',
         'dipinjam' => '🟢',
         'dikembalikan' => '🔵',
-        'ditolak' => '🔴'
+        'dibatalkan' => '🔴'
       ];
       echo $emoji[$data['status']] . ' ' . ucfirst($data['status']);
     ?>

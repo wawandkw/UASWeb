@@ -2,7 +2,6 @@
 session_start();
 include 'koneksi.php';
 
-// Cek apakah pengguna sudah login
 if (!isset($_SESSION['id_pengguna'])) {
   header("Location: login.php");
   exit();
@@ -74,7 +73,6 @@ $result = $query->get_result();
             $status = $row['status'];
             $batas_waktu = $row['batas_waktu'];
 
-            // Warna jika terlambat
             $is_late = ($status === 'dipinjam' && $batas_waktu < $today);
             $batas_class = $is_late ? 'text-red-600 font-semibold' : 'text-gray-800';
 
@@ -95,14 +93,12 @@ $result = $query->get_result();
             </td>
           </tr>
           <?php endwhile; ?>
-
         </tbody>
       </table>
     </div>
   </main>
 
   <!-- Modal Pop-up -->
-
   <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh]">
       <button onclick="tutupModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl">&times;</button>
@@ -111,7 +107,6 @@ $result = $query->get_result();
       </div>
     </div>
   </div>
-
 
   <script>
     feather.replace();
@@ -131,8 +126,18 @@ $result = $query->get_result();
 
     function batalkan(id) {
       if (confirm("Yakin ingin membatalkan booking?")) {
-        fetch('transaksi_batal.php?id=' + id)
-          .then(() => location.reload());
+        fetch('transaksi_batal.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: 'id_transaksi=' + encodeURIComponent(id)
+        })
+        .then(res => res.text())
+        .then(msg => {
+          alert(msg);
+          location.reload();
+        });
       }
     }
   </script>
